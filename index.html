@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHU-BHUG - Kuat, Lengket, Tahan Lama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #0d47a1;
+            --color-secondary: #FFCC00;
+            --color-accent: #9a6fef;
+            --color-accent-light: #f2f2f2;
+            --color-light: #b0c4de;
+            --color-dark: #1A237E;
+            --color-success: #2E7D32;
+            --color-price: #e53935;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-light);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            border: 3px solid var(--color-secondary);
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .slogan {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--color-accent);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .menu-item.active {
+            border-left-color: var(--color-secondary);
+            background-color: rgba(154, 111, 239, 0.05);
+        }
+
+        .menu-item p {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .menu-item h3 {
+            font-size: 1.4rem;
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .menu-item i {
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .content-box {
+            padding: 40px;
+            animation: fadeIn 0.5s ease;
+            display: none;
+        }
+
+        .content-box.active {
+            display: block;
+        }
+
+        .content-box h2 {
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .content-box h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+            border-radius: 2px;
+        }
+
+        .content-box p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .content-box ul {
+            margin: 25px 0;
+            padding-left: 20px;
+        }
+
+        .content-box li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .content-box li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .highlight {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        /* Slider Produk */
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .product-image-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .product-slider {
+            position: relative;
+            width: 100%;
+            height: 600px; /* Tinggi disesuaikan dengan rasio 900x600 */
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Pastikan gambar menutupi area tanpa distorsi */
+            transition: transform 0.5s ease;
+        }
+
+        .slide.active .product-image {
+            transform: scale(1.05);
+        }
+
+        /* Container untuk gambar dengan rasio 900x600 */
+        .image-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
+        /* Tombol navigasi slider */
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: var(--color-secondary);
+            transform: scale(1.2);
+        }
+
+        /* Tombol navigasi kiri/kanan */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-prev {
+            left: 15px;
+        }
+
+        .slider-next {
+            right: 15px;
+        }
+
+        /* Indikator gambar */
+        .slide-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .pricing-title {
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--color-accent);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .price-card.featured {
+            border-top-color: var(--color-secondary);
+            transform: scale(1.05);
+        }
+
+        .price-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .weight {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-price);
+            margin-bottom: 15px;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .best-value {
+            background: var(--color-secondary);
+            color: var(--color-primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 50px;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-link.wa {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .contact-link.ig {
+            background: linear-gradient(135deg, #C13584 0%, #833AB4 100%);
+        }
+
+        .contact-link i {
+            font-size: 1.3rem;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            background: var(--color-light);
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .step h4 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .contact-link {
+                min-width: 100%;
+            }
+            
+            .price-card.featured {
+                transform: none;
+            }
+            
+            .price-card.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .product-slider {
+                height: 450px; /* Lebih rendah di tablet */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .company-name {
+                font-size: 1.5rem;
+            }
+            
+            .slogan {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .content-box {
+                padding: 30px 20px;
+            }
+            
+            .menu-item {
+                padding: 25px 20px;
+            }
+            
+            .menu-item h3 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .product-section {
+                flex-direction: column;
+            }
+            
+            .product-slider {
+                height: 400px; /* Lebih rendah di mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-box h2 {
+                font-size: 1.5rem;
+            }
+            
+            .menu-item p {
+                font-size: 2rem;
+            }
+            
+            .price {
+                font-size: 2rem;
+            }
+            
+            .product-slider {
+                height: 300px; /* Sesuai rasio di mobile */
+            }
+            
+            .slider-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <!-- Ganti URL ini dengan URL gambar logo Anda (ukuran 200x200px) -->
+                <img src="logo.png" alt="Logo BHU-BHUG" class="logo-img">
+            </div>
+            <h1 class="company-name">PT SLOPENG JAYA</h1>
+        </div>
+        <p class="slogan">Kuat, Lengket, Tahan Lama!</p>
+    </header>
+
+    <main class="container">
+        <div class="menu-grid">
+            <div class="menu-item active" id="btn-deskripsi">
+                <i class="fas fa-info-circle"></i>
+                <p>01</p>
+                <h3>DESKRIPSI PRODUK</h3>
+            </div>
+            <div class="menu-item" id="btn-keunggulan">
+                <i class="fas fa-star"></i>
+                <p>02</p>
+                <h3>KEUNGGULAN & PROSES</h3>
+            </div>
+            <div class="menu-item" id="btn-kontak">
+                <i class="fas fa-shopping-cart"></i>
+                <p>03</p>
+                <h3>HARGA & PEMESANAN</h3>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div id="content-deskripsi" class="content-box active">
+                <h2>BHU-BHUG: Kekuatan Alam untuk Bangunan Anda.</h2>
+                <p><span class="highlight">BHU-BHUG</span> adalah bahan material alami premium yang lahir dari kearifan lokal dan proses yang intensif. Dibuat dari <span class="highlight">batuan gunung alami pilihan</span>, batu diproses melalui pembakaran sempurna selama <span class="highlight">tiga hari penuh</span> hingga mencapai kelunakan optimal.</p>
+                <p>Setelah diistirahatkan selama satu hari, batu lunak kemudian disiram dan diproses menjadi <span class="highlight">serbuk halus BHU-BHUG</span>. Serbuk ini merupakan <span class="highlight">aditif bangunan superior</span> yang menjamin campuran material Anda menjadi <span class="highlight">Lebih Kuat, Lebih Lengket, dan Lebih Tahan Lama.</span></p>
+                <p>Produk kami telah teruji dan digunakan dalam berbagai proyek konstruksi di Sumenep dan sekitarnya, membuktikan keunggulannya dalam meningkatkan kualitas bangunan.</p>
+                
+                <div class="product-section">
+                    <div class="product-image-container">
+                        <div class="product-slider" id="productSlider">
+                            <!-- Slide 1 - Gambar 900x600px -->
+                            <div class="slide active">
+                                <div class="image-container">
+                                    <!-- GANTI DENGAN GAMBAR PRODUK PERTAMA ANDA (900x600px) -->
+                                    <img src="produk1.jpg" 
+                                         alt="Produk BHU-BHUG" 
+                                         class="product-image">
+                                </div>
+                                <div class="slide-indicator">Gambar 1/2</div>
+                            </div>
+                            
+                            <!-- Slide 2 - Gambar 900x600px -->
+                            <div class="slide">
+                                <div class="image-container">
+                                    <!-- GANTI DENGAN GAMBAR PRODUK KEDUA ANDA (900x600px) -->
+                                    <img src="produk2.jpg" 
+                                         alt="Produk BHU-BHUG" 
+                                         class="product-image">
+                                </div>
+                                <div class="slide-indicator">Gambar 2/2</div>
+                            </div>
+                            
+                            <!-- Tombol navigasi -->
+                            <button class="slider-btn slider-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="slider-btn slider-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            
+                            <!-- Indikator titik -->
+                            <div class="slider-nav">
+                                <div class="slider-dot active" data-slide="0"></div>
+                                <div class="slider-dot" data-slide="1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spesifikasi Produk:</h3>
+                        <ul>
+                            <li>Bentuk: Serbuk halus</li>
+                            <li>Warna: Abu-abu natural</li>
+                            <li>Kemasan: Plastik khusus anti lembab</li>
+                            <li>Berat: 20kg dan 40kg per sak</li>
+                            <li>bisa simpan selamanya di tempat kering</li>
+                            <li>Penggunaan: Campuran semen dan pasir</li>
+                            <li>Asal: Batu gunung alami Sumenep</li>
+                            <li>Proses: Pembakaran 3 hari + didinginkan 1 hari</li>
+                        </ul>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 10px;">
+                            <h4><i class="fas fa-lightbulb" style="color: var(--color-secondary); margin-right: 10px;"></i>Tips Penggunaan:</h4>
+                            <p>Campurkan 1 bagian BHU-BHUG dengan 3 bagian semen dan pasir untuk hasil terbaik. Aduk rata sebelum digunakan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-keunggulan" class="content-box">
+                <h2>Keunggulan Utama BHU-BHUG</h2>
+                <ul>
+                    <li><span class="highlight">Lebih Kuat:</span> Meningkatkan daya tahan dan kekerasan campuran bangunan hingga 40% dibanding material konvensional.</li>
+                    <li><span class="highlight">Lebih Lengket:</span> Memastikan ikatan antar material lebih solid dan sempurna, mengurangi risiko retak dan keropos.</li>
+                    <li><span class="highlight">Lebih Tahan Lama:</span> Menjamin kualitas bangunan yang bertahan lintas generasi dengan perlindungan optimal terhadap cuaca ekstrem.</li>
+                    <li><span class="highlight">Ramah Lingkungan:</span> Terbuat dari bahan alami tanpa zat kimia berbahaya, aman bagi kesehatan dan lingkungan.</li>
+                    <li><span class="highlight">Ekonomis:</span> Mengurangi penggunaan semen hingga 20% dengan hasil yang lebih baik.</li>
+                    <li><span class="highlight">Mudah Digunakan:</span> Cukup campurkan dengan semen dan pasir sesuai petunjuk.</li>
+                </ul>
+                
+                <h3>Proses Pembuatan Alami</h3>
+                <p>Proses pembakaran 3 hari dan pendinginan 1 hari menghasilkan serbuk dengan kualitas kimia yang unik, jauh lebih baik dari material konvensional.</p>
+                
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Pemilihan Batu</h4>
+                        <p>Batuan gunung pilihan dengan kualitas terbaik dipilih secara manual dari sumber alami.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Proses Pembakaran</h4>
+                        <p>Pembakaran selama 3 hari dengan suhu terkontrol untuk mencapai kelunakan optimal.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Pengistirahatan</h4>
+                        <p>Batu dibiarkan selama 1 hari untuk stabilisasi sebelum diproses lebih lanjut.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Penggilingan</h4>
+                        <p>Proses penggilingan menjadi serbuk halus siap pakai untuk campuran bangunan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-kontak" class="content-box">
+                <h2>Harga & Pemesanan</h2>
+                <p>Dapatkan BHU-BHUG dengan harga terbaik untuk proyek konstruksi Anda. Kami menyediakan dua pilihan kemasan sesuai kebutuhan:</p>
+                
+                <div class="pricing-section">
+                    <h3 class="pricing-title">PILIHAN KEMASAN & HARGA</h3>
+                    <div class="pricing-grid">
+                        <div class="price-card">
+                            <div class="weight">20 KG</div>
+                            <div class="price">Rp 25.000<span class="price-unit">/sak</span></div>
+                            <p>Untuk proyek kecil dan perbaikan rumah</p>
+                            <p><i class="fas fa-check" style="color: var(--color-success); margin-right: 8px;"></i>Cocok untuk perbaikan</p>
+                            <p><i class="fas fa-check" style="color: var(--color-success); margin-right: 8px;"></i>Praktis dan mudah dibawa</p>
+                        </div>
+                        
+                        <div class="price-card featured">
+                            <div class="best-value">NILAI TERBAIK</div>
+                            <div class="weight">40 KG</div>
+                            <div class="price">Rp 50.000<span class="price-unit">/sak</span></div>
+                            <p>Untuk proyek menengah dan besar</p>
+                            <p><i class="fas fa-check" style="color: var(--color-success); margin-right: 8px;"></i>Hemat 15% per kg</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px; font-style: italic; color: #666;">
+                        <p>*Harga belum termasuk ongkos kirim</p>
+                        <p>*Diskon khusus untuk pembelian dalam jumlah besar</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3>Hubungi Kami untuk Pemesanan</h3>
+                    <p>Siap untuk meningkatkan kualitas bangunan Anda? Hubungi kami sekarang untuk konsultasi gratis dan penawaran harga terbaik!</p>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--color-accent); margin-right: 10px;"></i> Sumenep, Jawa Timur, Indonesia</p>
+                    <p><i class="fas fa-clock" style="color: var(--color-accent); margin-right: 10px;"></i> Senin - Sabtu: 08.00 - 17.00 WIB</p>
+                    
+                    <div class="contact-links">
+                        <a href="https://wa.me/+6281325329492?text=Assalamualaikum%20wr.%20wb.%20Saya%20ingin%20memesan%20BHU-BHUG%20dan%20bertanya%20tentang%3A%0A1.%20Harga%20untuk%20pembelian%20%5Bjumlah%5D%20sak%0A2.%20Ongkos%20kirim%20ke%20%5Blokasi%5D%0A3.%20Waktu%20pengiriman" target="_blank" class="contact-link wa">
+                            <i class="fab fa-whatsapp"></i>
+                            Pesan via WhatsApp
+                        </a>
+                        <a href="https://www.instagram.com/_aminajaaa?igsh=OTJnYnF3NGp5Ynpi" target="_blank" class="contact-link ig">
+                            <i class="fab fa-instagram"></i>
+                            Kunjungi Instagram
+                        </a>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                        <h4><i class="fas fa-shipping-fast" style="color: var(--color-accent); margin-right: 10px;"></i>Pengiriman & Pembayaran:</h4>
+                        <p>✔ Pengiriman ke seluruh Sumenep dan sekitarnya</p>
+                        <p>✔ Pembayaran via transfer bank atau tunai</p>
+                        <p>✔ Bisa ambil langsung di gudang kami</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 PT SLOPENG JAYA - BHU-BHUG Sumenep. Semua Hak Dilindungi.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Material Bangunan Premium dari Alam untuk Kualitas Terbaik</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Jalan Raya Sumenep No. 123 | Telepon: (0328) 123456</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ambil elemen tombol
+            const btnDeskripsi = document.getElementById('btn-deskripsi');
+            const btnKeunggulan = document.getElementById('btn-keunggulan');
+            const btnKontak = document.getElementById('btn-kontak');
+
+            // Ambil elemen konten
+            const contentDeskripsi = document.getElementById('content-deskripsi');
+            const contentKeunggulan = document.getElementById('content-keunggulan');
+            const contentKontak = document.getElementById('content-kontak');
+            
+            // Fungsi untuk mengatur menu aktif
+            function setActiveMenu(activeButton) {
+                // Hapus kelas active dari semua tombol
+                [btnDeskripsi, btnKeunggulan, btnKontak].forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Tambahkan kelas active ke tombol yang diklik
+                activeButton.classList.add('active');
+            }
+            
+            // Fungsi untuk menyembunyikan semua konten
+            function hideAllContents() {
+                contentDeskripsi.style.display = 'none';
+                contentKeunggulan.style.display = 'none';
+                contentKontak.style.display = 'none';
+                
+                // Hapus kelas active dari semua konten
+                [contentDeskripsi, contentKeunggulan, contentKontak].forEach(content => {
+                    content.classList.remove('active');
+                });
+            }
+
+            // Event Listener untuk Tombol Deskripsi
+            btnDeskripsi.addEventListener('click', () => {
+                hideAllContents();
+                setActiveMenu(btnDeskripsi);
+                // Tampilkan konten Deskripsi dengan animasi
+                contentDeskripsi.style.display = 'block';
+                setTimeout(() => {
+                    contentDeskripsi.classList.add('active');
+                }, 10);
+            });
+
+            // Event Listener untuk Tombol Keunggulan
+            btnKeunggulan.addEventListener('click', () => {
+                hideAllContents();
+                setActiveMenu(btnKeunggulan);
+                // Tampilkan konten Keunggulan
+                contentKeunggulan.style.display = 'block';
+                setTimeout(() => {
+                    contentKeunggulan.classList.add('active');
+                }, 10);
+            });
+
+            // Event Listener untuk Tombol Kontak
+            btnKontak.addEventListener('click', () => {
+                hideAllContents();
+                setActiveMenu(btnKontak);
+                // Tampilkan konten Kontak
+                contentKontak.style.display = 'block';
+                setTimeout(() => {
+                    contentKontak.classList.add('active');
+                }, 10);
+            });
+            
+            // Inisialisasi: Tampilkan konten pertama
+            contentDeskripsi.style.display = 'block';
+            contentDeskripsi.classList.add('active');
+            
+            // Tambahkan interaksi untuk kartu harga
+            const priceCards = document.querySelectorAll('.price-card');
+            priceCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    if (!card.classList.contains('featured')) {
+                        card.style.transform = 'translateY(-10px)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    if (!card.classList.contains('featured')) {
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            // ============================
+            // SLIDER GAMBAR PRODUK
+            // ============================
+            
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.slider-prev');
+            const nextBtn = document.querySelector('.slider-next');
+            const slideIndicators = document.querySelectorAll('.slide-indicator');
+            
+            let currentSlide = 0;
+            let slideInterval;
+            const slideDuration = 5000; // 5 detik
+            
+            // Fungsi untuk menampilkan slide tertentu
+            function showSlide(n) {
+                // Sembunyikan semua slide
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Hapus active dari semua dots
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Atur slide saat ini
+                currentSlide = n;
+                
+                // Jika melebihi jumlah slide, kembali ke awal
+                if (currentSlide >= slides.length) {
+                    currentSlide = 0;
+                }
+                
+                // Jika kurang dari 0, ke slide terakhir
+                if (currentSlide < 0) {
+                    currentSlide = slides.length - 1;
+                }
+                
+                // Tampilkan slide saat ini
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+                
+                // Update indikator teks
+                slideIndicators.forEach((indicator, index) => {
+                    indicator.textContent = `Gambar ${index + 1}/${slides.length}`;
+                });
+            }
+            
+            // Fungsi untuk pindah ke slide berikutnya
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Fungsi untuk pindah ke slide sebelumnya
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+            
+            // Mulai interval untuk auto slide
+            function startSlideInterval() {
+                slideInterval = setInterval(nextSlide, slideDuration);
+            }
+            
+            // Hentikan interval
+            function stopSlideInterval() {
+                clearInterval(slideInterval);
+            }
+            
+            // Event listener untuk tombol next
+            nextBtn.addEventListener('click', () => {
+                stopSlideInterval();
+                nextSlide();
+                startSlideInterval();
+            });
+            
+            // Event listener untuk tombol prev
+            prevBtn.addEventListener('click', () => {
+                stopSlideInterval();
+                prevSlide();
+                startSlideInterval();
+            });
+            
+            // Event listener untuk dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopSlideInterval();
+                    showSlide(index);
+                    startSlideInterval();
+                });
+            });
+            
+            // Hentikan interval saat hover di slider
+            const slider = document.getElementById('productSlider');
+            slider.addEventListener('mouseenter', stopSlideInterval);
+            slider.addEventListener('mouseleave', startSlideInterval);
+            
+            // Mulai slider otomatis
+            startSlideInterval();
+            
+            // ============================
+            // AKHIR SLIDER GAMBAR PRODUK
+            // ============================
+        });
+    </script>
+</body>
+</html>
